@@ -1,0 +1,2 @@
+cut -d, -f1 spy.csv
+awk -F , { print $1 } spy.csv
