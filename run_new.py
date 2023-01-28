@@ -67,7 +67,10 @@ class NoStrategy(bt.Strategy):
 cerebro = bt.Cerebro()
 cerebro.broker.setcash(100000)
 
-prices = pd.read_csv('/home/mark/trading/ticker_files/spy.csv', index_col='Date', parse_dates=True)
+#prices = pd.read_csv('/home/mark/trading/ticker_files/spy.csv', index_col='Date', parse_dates=True)
+date_shorten = lambda x: x[0:10]
+prices = pd.read_csv('/home/mark/trading/ticker_files/spy.csv', index_col='Date', converters={'Date':date_shorten}, parse_dates=True)
+#print(prices)
 
 feed = bt.feeds.PandasData(dataname=prices)
 cerebro.adddata(feed)
